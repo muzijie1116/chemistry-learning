@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>化学元素学习网站</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧪 化学元素学习网站</h1>
+            <div class="mode-switch">
+                <button id="choiceModeBtn" class="mode-btn active">选择题模式</button>
+                <button id="matchModeBtn" class="mode-btn">连线题模式</button>
+            </div>
+        </header>
+
+        <!-- 选择题模式 -->
+        <div id="choiceMode" class="mode-content active">
+            <div class="progress-bar">
+                <div class="progress-info">
+                    当前进度：<span id="current">1</span> / <span id="total">35</span>
+                </div>
+                <div class="progress-fill">
+                    <div id="progressBar" class="progress-inner"></div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <!-- 左侧：答题区 -->
+                <div class="quiz-section">
+                    <div class="learning-guide">
+                        <h3>📖 学习流程：</h3>
+                        <ol>
+                            <li>先选择答案</li>
+                            <li>点击"公布答案"</li>
+                            <li>公布答案后，显示解析和图片</li>
+                            <li>如果答错，自动加入错题本</li>
+                        </ol>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="element-number">第 <span id="elementNum">1</span> 号元素</div>
+                        <h2 id="elementName">氢 <span id="elementEn">Hydrogen</span></h2>
+                        <p class="question-text" id="questionText">以下哪个是"氢"的化学符号？</p>
+                        
+                        <div class="options" id="options">
+                            <!-- 选项由JS生成 -->
+                        </div>
+
+                        <button id="submitBtn" class="btn-primary">公布答案</button>
+                        <button id="nextBtn" class="btn-secondary" style="display:none;">下一题</button>
+                    </div>
+                </div>
+
+                <!-- 右侧：解析区 -->
+                <div class="analysis-section">
+                    <h3>🔍 元素解析</h3>
+                    <div id="analysisContent" class="analysis-content">
+                        <p class="placeholder">请先在左侧完成选择题，<br>然后点击"公布答案"。<br><br>公布答案后，这里才会显示解析和图片。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 错题本 -->
+            <div class="wrong-answers">
+                <h3>❌ 错题本</h3>
+                <p>答错的题会自动保存到错题本，显示错误选项和正确选项。</p>
+                <div id="wrongList" class="wrong-list"></div>
+            </div>
+        </div>
+
+        <!-- 连线题模式 -->
+        <div id="matchMode" class="mode-content">
+            <div class="match-header">
+                <h2>🔗 元素连线题</h2>
+                <p>点击左边的元素名称，再点击右边的元素符号进行连线。共3组，每组完成后自动进入下一组。</p>
+                <div class="match-progress">
+                    当前第 <span id="matchGroup">1</span> 组 / 共 3 组 | 
+                    本组进度：<span id="matchProgress">0</span> / <span id="matchTotal">12</span>
+                </div>
+            </div>
+
+            <div class="match-container">
+                <div class="match-column">
+                    <h4>元素名称</h4>
+                    <div id="matchNames" class="match-items">
+                        <!-- 由JS生成 -->
+                    </div>
+                </div>
+                
+                <div class="match-lines" id="matchLines">
+                    <svg id="matchSvg" width="100%" height="100%"></svg>
+                </div>
+
+                <div class="match-column">
+                    <h4>元素符号</h4>
+                    <div id="matchSymbols" class="match-items">
+                        <!-- 由JS生成 -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="match-controls">
+                <button id="checkMatchBtn" class="btn-primary">检查连线</button>
+                <button id="resetMatchBtn" class="btn-secondary">重置本组</button>
+                <button id="nextMatchBtn" class="btn-primary" style="display:none;">下一组</button>
+            </div>
+
+            <div id="matchResult" class="match-result"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

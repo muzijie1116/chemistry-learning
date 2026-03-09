@@ -1,0 +1,563 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+/* 头部样式 */
+header {
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* 模式切换 */
+.mode-switch {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.mode-btn {
+    padding: 12px 30px;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s;
+}
+
+.mode-btn:hover, .mode-btn.active {
+    background: white;
+    color: #4facfe;
+}
+
+/* 模式内容切换 */
+.mode-content {
+    display: none;
+}
+
+.mode-content.active {
+    display: block;
+}
+
+/* 进度条 */
+.progress-bar {
+    padding: 20px 30px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.progress-info {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.progress-fill {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-inner {
+    height: 100%;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    width: 0%;
+    transition: width 0.3s;
+}
+
+/* 主内容区 */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 30px;
+}
+
+/* 左侧答题区 */
+.quiz-section {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.learning-guide {
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 0 8px 8px 0;
+}
+
+.learning-guide h3 {
+    color: #1976d2;
+    margin-bottom: 10px;
+}
+
+.learning-guide ol {
+    padding-left: 20px;
+    color: #555;
+}
+
+.learning-guide li {
+    margin: 5px 0;
+}
+
+.question-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.element-number {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.question-card h2 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 2em;
+}
+
+.question-card h2 span {
+    color: #888;
+    font-size: 0.6em;
+    font-weight: normal;
+}
+
+.question-text {
+    color: #555;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff3e0;
+    border-radius: 8px;
+    border-left: 4px solid #ff9800;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.option {
+    padding: 15px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: white;
+    font-size: 1.1em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.option:hover {
+    border-color: #2196f3;
+    background: #f5f5f5;
+    transform: translateX(5px);
+}
+
+.option.selected {
+    border-color: #2196f3;
+    background: #e3f2fd;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
+}
+
+.option.correct {
+    border-color: #4caf50;
+    background: #e8f5e9;
+    animation: correctPulse 0.5s;
+}
+
+.option.wrong {
+    border-color: #f44336;
+    background: #ffebee;
+    animation: wrongShake 0.5s;
+}
+
+@keyframes correctPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+@keyframes wrongShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* 按钮样式 */
+.btn-primary, .btn-secondary {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(79, 172, 254, 0.4);
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #333;
+    margin-top: 10px;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+}
+
+/* 右侧解析区 */
+.analysis-section {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.analysis-section h3 {
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.analysis-content {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    min-height: 400px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.placeholder {
+    color: #999;
+    text-align: center;
+    padding: 80px 20px;
+    line-height: 2;
+    font-size: 1.1em;
+}
+
+.analysis-item {
+    margin: 12px 0;
+    padding: 12px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    border-left: 3px solid #4facfe;
+    line-height: 1.6;
+}
+
+.analysis-item strong {
+    color: #2196f3;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.element-image {
+    width: 100%;
+    max-width: 250px;
+    margin: 20px auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* 错题本 */
+.wrong-answers {
+    background: #ffebee;
+    margin: 0 30px 30px;
+    padding: 25px;
+    border-radius: 15px;
+    border: 2px solid #ffcdd2;
+}
+
+.wrong-answers h3 {
+    color: #c62828;
+    margin-bottom: 10px;
+}
+
+.wrong-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.wrong-item {
+    background: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: 2px solid #ef9a9a;
+    color: #333;
+    font-size: 0.95em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.wrong-item .wrong-symbol {
+    color: #c62828;
+    text-decoration: line-through;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.wrong-item .correct-symbol {
+    color: #2e7d32;
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.wrong-item .arrow {
+    color: #666;
+    margin: 0 5px;
+}
+
+/* ==================== 连线题样式（优化版）==================== */
+.match-header {
+    padding: 30px;
+    text-align: center;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.match-header h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.match-header p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.match-progress {
+    font-size: 1.1em;
+    color: #4facfe;
+    font-weight: bold;
+}
+
+/* 关键修改：使用CSS Grid实现精确对齐 */
+.match-container {
+    display: grid;
+    grid-template-columns: 140px 1fr 140px;
+    gap: 0;
+    padding: 30px;
+    position: relative;
+    background: #fafafa;
+    margin: 20px;
+    border-radius: 12px;
+    align-items: start;
+}
+
+.match-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+}
+
+.match-column h4 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4facfe;
+    font-size: 1.1em;
+}
+
+.match-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 关键修改：固定高度确保对齐 */
+.match-item {
+    padding: 0 12px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.95em;
+    height: 42px;
+    line-height: 38px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.match-item:hover {
+    border-color: #4facfe;
+    background: #f0f8ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+}
+
+.match-item.selected {
+    border-color: #4facfe;
+    background: #e3f2fd;
+    box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.3);
+}
+
+.match-item.matched {
+    border-color: #4caf50;
+    background: #e8f5e9;
+    cursor: default;
+    box-shadow: 0 2px 4px rgba(76, 175, 80, 0.2);
+}
+
+.match-item.error {
+    border-color: #f44336;
+    background: #ffebee;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
+
+/* 关键修改：连线区域占满中间空间 */
+.match-lines {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#matchSvg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.match-line {
+    stroke: #4caf50;
+    stroke-width: 3;
+    fill: none;
+    stroke-linecap: round;
+    filter: drop-shadow(0 2px 2px rgba(76, 175, 80, 0.3));
+}
+
+/* 连线动画 */
+@keyframes drawLine {
+    from {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+    }
+    to {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 0;
+    }
+}
+
+.match-line {
+    animation: drawLine 0.5s ease forwards;
+}
+
+.match-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: #f8f9fa;
+}
+
+.match-controls button {
+    width: auto;
+    padding: 12px 35px;
+    font-size: 1em;
+}
+
+.match-result {
+    text-align: center;
+    padding: 15px;
+    font-size: 1.1em;
+    min-height: 50px;
+}
+
+.match-result .success {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.match-result .error {
+    color: #f44336;
+    font-weight: bold;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    header h1 {
+        font-size: 1.8em;
+    }
+    
+    .match-container {
+        grid-template-columns: 100px 1fr 100px;
+        padding: 15px;
+    }
+    
+    .match-item {
+        font-size: 0.85em;
+        height: 38px;
+        line-height: 34px;
+        padding: 0 8px;
+    }
+}
